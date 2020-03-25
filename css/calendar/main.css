@@ -460,3 +460,13 @@ iframe {
     opacity: 1;
   }
 }
+
+.styling {
+  background: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  /* height: 150px;
+  overflow: auto; */
+}
