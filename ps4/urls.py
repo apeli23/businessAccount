@@ -1,55 +1,14 @@
-#ventur302
-from django.conf.urls import url, include
-from  . import views
+from django.urls import path
 
-app_name='ps4'
+from ps4 import views
+
+app_name = 'ps4'
 urlpatterns = [
-	url(r'^',views.Dashboard, name='dashboard'),
-
-	# url(r'^product/(?P<product_slug>[-\w]+)/$', views.show_product, name="product"),
-
-
+	path('',views.index, name='index'),
+	path('playstation/',views.playstation, name='playstation'),
+	path('snacks/',views.snacks, name='snacks'),
+	path('drinks/',views.drinks, name='drinks'),
+	path('charts/',views.charts, name='charts'),
+	path('records/',views.records, name='records'),
 
 ]
-
-
-
- 
-
-# # (r'^category/(?P<category_slug>[-\w]+)/$', 
-
-# # 'show_category', {
-
-# # 'template_name':'catalog/category.html'},'catalog_category'),
-
-
-# # (r'^product/(?P<product_slug>[-\w]+)/$', 
-
-# # 'show_product', {
-
-# # 'template_name':'catalog/product.html'},'catalog_product'),
-
-# )
-
-
-
-
-
-
-
-
-
-
-	
-
-
-
-
-	# url(r'^product/(?P<product_slug>[-\w]+)/$', views.show_product, name="product"),
- 
- #   ]
-
-# (r'^product/(?P<product_slug>[-\w]+)/$', 
-# 'show_product', {
-# 'template_name':'catalog/product.html'},'catalog_product'),
-# )
