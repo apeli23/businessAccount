@@ -1,7 +1,254 @@
 {% extends "ps4/base.html" %}
 {%load static%}
-{% block content %}
- <h1>Playstation template view</h1>
+{% block content %} 
+
+
+<!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Playstation</h1>
+
+             
+
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
+
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <!-- Daily amount -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Today's Income</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">ksh0</div>
+                       <!-- Add Amount Button -->
+            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#addincome">
+                    Income
+
+                  </a>
+                    </div>
+
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Weekly Earnings -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Weekly earnings</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">ksh0</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Monthly Earnings -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Monthly Earnings</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">ksh0</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Annual Earnings -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Annual Earnings</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">ksh0</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Tasks-->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">4</div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Liabilities -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Liabilities</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Ksh200</div>
+                      <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#liabilities">
+                      details</a>
+                    </div>
+
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+         <!-- Income Modal-->
+  <div class="modal fade" id="addincome" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add income amount</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body"> 
+          <div class="form-group">
+            <input type="text" class="form-control form-control-user" id="exampleInputAmount" aria-describedby="amountHelp" placeholder="Enter Income amount">
+            </div>
+             
+            <div class="custom-control custom-checkbox small">
+                <input type="checkbox" class="custom-control-input" onchange="showHide(this.checked)" name="chckbox" id="customChec">
+                <label class="custom-control-label" for="customChec">Liability</label>
+            </div>
+            <div class="divider"></div><br> 
+             <div class="divider">  </div>
+            <input id="hiddenField" style="display:none;" type="text" class="form-control form-control-user" id="exampleInputAmount" aria-describedby="amountHelp" placeholder="Enter Customer Name">
+          </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="#">Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- liabilities Modal-->
+  <div class="modal fade" id="liabilities" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Liabilities</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body"> 
+          <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#pendingliabilities">Pending <br></a>
+
+          <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#pendingliabilities">edit</a>           
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="#">Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="divider"></div>
+<br> 
 {% endblock %}
 
- 
+{%block chart%}
+          <!-- Total Earnings-->
+          <div class="row">
+            <!-- Total Earnings Chart -->
+            <div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Total Earnings</h6>    
+                </div>
+                <!-- Card Body -->
+                  <div class="card-body">
+                   <div class="chart-area">
+                     <canvas id="myAreaChart"></canvas>
+                   </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+       
+{% endblock %}
+
+         <!-- Income Modal-->
+  <div class="modal fade" id="addincome" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add income amount</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body"> 
+          <div class="form-group">
+            <input type="text" class="form-control form-control-user" id="exampleInputAmount" aria-describedby="amountHelp" placeholder="Enter Income amount">
+            </div>
+             
+            <div class="custom-control custom-checkbox small">
+                <input type="checkbox" class="custom-control-input" id="customChec">
+                <label class="custom-control-label" for="customChec">Liability</label>
+            </div>
+            <div class="divider"></div>
+            </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="#">Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <br> 

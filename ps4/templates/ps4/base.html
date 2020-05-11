@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="{%static 'static/css/sb-admin-2.min.css'%}" rel="stylesheet">
+  <link href="{%static 'static/css/admin5.min.css'%}" rel="stylesheet">
 
 </head>
 <body id="page-top">
@@ -42,7 +42,9 @@
          
         {% block content %}
         {% endblock %}
-         
+        
+        {% block chart %}
+        {% endblock %}
 
       </div>
       <!-- End of Main Content -->
@@ -51,7 +53,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>BPS4 Webapp 2020</span>
+            <span><b>hypehub_webapp 2020</b></span>
           </div>
         </div>
       </footer>
@@ -65,6 +67,7 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
+                <!-- Modals-->
   <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -78,11 +81,173 @@
         <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
+          <a class="btn btn-primary" href="/login/">Logout</a>
         </div>
       </div>
     </div>
   </div>
+
+   <!-- liabilities Modal-->
+  <div class="modal fade" id="liabilities" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Liabilities</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body"> 
+          <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#pendingliabilities">Pending <br></a>
+
+          <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#pendingliabilities">edit</a>           
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="#">Submit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="divider"></div>
+<br> 
+
+       <!-- add_drinks_ Modal-->
+  <div class="modal fade" id="add_drink" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">addStock</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body"> 
+              <a class="nav-link dropdown-toggle btn-icon-split" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icon text-white-50">
+                      
+                          Select Drink
+                    </a>
+                    <div class="dropdown-menu dropdown-menu animated--fade-in" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Soda</a>
+                    <div class="dropdown-divider"></div>
+                       
+                        <a class="dropdown-item" href="#">Energy Drink</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Juice</a>
+                    </div>
+                     <div class="divider"></div>
+                     <br>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="exampleInputAmount" aria-describedby="amountHelp" placeholder="Amount spent">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="examplequantitybought" aria-describedby="amountHelp" placeholder="Number of pieces bought">
+                </div>
+            </div>
+          <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="#">Submit</a>
+          </div>
+          </div>
+      </div>
+  </div>
+<div class="divider"></div>
+<br>
+
+     <!-- add_snack_ Modal-->
+  <div class="modal fade" id="add_snack" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Stock up snack(s)</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body"> 
+              <a class="nav-link dropdown-toggle btn-icon-split" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icon text-white-50">
+                      
+                          Select Snack
+                    </a>
+                    <div class="dropdown-menu dropdown-menu animated--fade-in" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Biscuts</a>
+                    <div class="dropdown-divider"></div>
+                       
+                        <a class="dropdown-item" href="#">Lollipops</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Pk</a>
+                    </div>
+                     <div class="divider"></div>
+                     <br>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="exampleInputAmount" aria-describedby="amountHelp" placeholder="Amount spent">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="examplequantitybought" aria-describedby="amountHelp" placeholder="Number of pieces bought">
+                </div>
+            </div>
+          <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="#">Submit</a>
+          </div>
+          </div>
+      </div>
+  </div>
+<div class="divider"></div>
+<br>
+
+       <!-- sellStock Modal-->
+  <div class="modal fade" id="sell_drink" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">sell_Drink</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body"> 
+              <a class="nav-link dropdown-toggle btn-icon-split" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="icon text-white-50">
+                      
+                          Select Drink
+                    </a>
+                    <div class="dropdown-menu dropdown-menu animated--fade-in" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Soda--><span>Ksh.30</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Energy Drink--><span>Ksh.30</span></a> 
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Juices--><span>Ksh.30</span></a>
+                    </div>
+                     <div class="divider"></div>
+                     <br>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="exampleInputAmount" aria-describedby="amountHelp" placeholder="Quantity">
+                </div>
+            </div>
+          <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="#">Submit</a>
+          </div>
+          </div>
+      </div>
+  </div>
+<div class="divider"></div>
+<br>
+
+  <!-- checkbox script-->
+  <script>
+   function showHide(checked) {
+    if(checked == true)
+      $("#hiddenField").fadeIn();
+
+    else $("#hiddenField").fadeOut();
+   }
+ </script>
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -115,8 +280,9 @@
   <script src="{%static 'static/vendor/chart.js/Chart.min.js'%}"></script>
 
   <!-- Page level custom scripts -->
-  <!-- <script src="{%static 'static/js/demo/chart-area-demo.js'%}"></script>
-  <script src="{%static 'static/js/demo/chart-area-demo.js'%}"></script> -->
+  <script src="{%static 'static/js/demo/chart-area-demo.js'%}"></script>
+  <script src="{%static 'static/js/demo/chart-area-demo.js'%}"></script>
+  <script src="{%static 'static/js/demo/chart-pie-demo.js'%}"></script>
 
 </body>
 </html>

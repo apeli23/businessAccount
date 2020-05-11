@@ -33,6 +33,21 @@ def records(request):
 	# return HttpResponse("records page view")
 	return render(request, 'ps4/records.html')
 
+#login template view 
+def login(request):
+	# return HttpResponse("login page view")
+	return render(request, 'ps4/login.html')
+
+#forgot-password template view 
+def forgotpassword(request):
+	# return HttpResponse("forgotpassword page view")
+	return render(request, 'ps4/forgotpassword.html')
+
+#login register view 
+def register(request):
+	# return HttpResponse("register page view")
+	return render(request, 'ps4/register.html')
+
 
 
 
