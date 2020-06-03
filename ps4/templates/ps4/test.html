@@ -1,0 +1,30 @@
+{%extends 'ps4/base.html'%}
+<title>	test</title>
+{%load static%}
+
+{%block content%}
+<div class="container">
+	<div class="col-md-8">		
+ 		<form method="post">
+			<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#snack">Income</a><br>
+	 		{% csrf_token%}
+		</form><br>
+
+		<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#buysnack">Buy Snack</a><br>
+		<h2>{{text}}</h2>
+ {%for name in post%}
+ 		<h1>{{name.name}}</h1>	
+ {%endfor%}
+ {%for description in post%}
+ 		<h1>{{name.name}}</h1>	
+ {%endfor%}
+ 	</div> 
+
+ 	<div class="col-md-4">
+ 		<h2>column 2</h2>
+ 		{&&}
+ 	</div>
+</div>
+
+{%endblock%}
+

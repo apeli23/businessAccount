@@ -1,7 +1,126 @@
 {% extends "ps4/base.html" %}
 {%load static%}
 {% block content %}
- <h1>Records template view</h1>
+<!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          
+
+          <!-- AllTransactions Table -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">All Transactions</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Transaction_ID</th>
+                      <th>Business type</th>
+                      <th>Item</th>
+                      <th>Transaction_Type</th>
+                      <th>Amount</th>
+                     
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Date</th>
+                      <th>Transaction_ID</th>
+                      <th>Business type</th> 
+                      <th>Item</th>                      
+                      <th>Transaction_Type</th>
+                      <th>Amount</th>
+                    </tr>
+                  </tfoot>
+                  <tbody> 
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+           <!-- playstation Table -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Snacks and Drinks Transactions</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Transaction_ID</th>
+                      <th>Business type</th>
+                      <th>Item</th>
+                      <th>Transaction_Type</th>
+                      <th>Amount</th>
+                     
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Date</th>
+                      <th>Transaction_ID</th>
+                      <th>Business type</th>
+                      <th>Item</th>
+                      <th>Transaction_Type</th>
+                      <th>Amount</th>
+                     
+                    </tr>
+                  </tfoot>
+                  <tbody> 
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+           <!-- Snacks and Drinks Table -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Playstation Transactions</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Transaction_ID</th>
+                      <th>Business type</th>
+                      <th>Transaction_Type</th>
+                      <th>Amount</th>
+                     
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Date</th>
+                      <th>Transaction_ID</th>
+                      <th>Business type</th>                       
+                      <th>Transaction_Type</th>
+                      <th>Amount</th>
+                    </tr>
+                  </tfoot>
+                  <tbody> 
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+       
+      <!-- End of Main Content -->
 {% endblock %}
 
  
