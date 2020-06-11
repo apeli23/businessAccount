@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse,HttpResponseRedirect
-from ps4.forms import plusForm,AddForm,Nameform,ProductServicesForm, buysnackForm
+from ps4.forms import plusForm,liabilityForm,Nameform,ProductServicesForm, buysnackForm, spendForm, sellstockForm,incomeForm
 from django.views import View
 from django.views.generic import TemplateView
 from ps4.models import ProductsandServices, Transactions
@@ -24,44 +24,92 @@ from django.contrib.auth.models import User
 # 		return render(request, self.template_name,{'form':form})
 
 
-class buysnackView(TemplateView):
-	template_name = 'ps4/test.html'
+# class buysnackView(TemplateView):
+# 	template_name = 'ps4/test.html'
 
-	def get(self,request ):
-		sform = buysnackForm()
-		return render(request, self.template_name, {'sform':sform})
+# 	def get(self,request ):
+# 		sform = buysnackForm()
+# 		args = {'sform':sform}
+# 		return render(request, self.template_name, args)
 
  
 class testView(TemplateView):
 	template_name = 'ps4/test.html'
 	def get(self,request ):
 		form = ProductServicesForm()
-		post = ProductsandServices.objects.all().order_by( '-date_created') 
-		transactions = Transactions.objects.all()
-		# print(post)
-
-		form = ProductServicesForm()
 		post = ProductsandServices.objects.all() 
+		transactions = Transactions.objects.all()
+		print(post)
+
 		args = {'form':form, 'post':post}
 		return render(request, self.template_name, args)
-	# template_name = 'ps4/test.html'
 
-	# def get(self, request):
-	# 	form = AddForm()
-	# 	return render(request, self.template_name,{'form':form})
+class incomeView(TemplateView):
+	template_name='forms/incomeForm.html'
+
+	def get(self, request):
+		form = incomeForm()
+		return render(request, self.template_name,{'form':incomeForm()})
+
+	def post(self, request):
+		if request.method =='POST':
+			form =incomeForm(request.POST)
+
+			if form.is_valid():
+				 
+				unit_price = form.cleaned_data['unit_price']	
+				 
+				print(name, description)
+				return HttpResponseRedirect('/')
+
+				form =incomeForm()
+		args = {'form':form, 'quantity':quantity, 'unit_price':unit_price}
+		return render(request, self.template_name, args)
+
+
+class productserviceView(TemplateView):
+	template_name='ps4/productservicesForm.html'
+
+	def get(self, request):
+		form = ProductServicesForm()
+		return render(request, self.template_name,{'form':ProductServicesForm()})
+
+
+class buysnackView(TemplateView):
+	template_name = 'forms/buysnackForm.html'
+	 
+	def get(self, request):
+		form = buysnackForm()
+		return render(request, self.template_name,{'form':buysnackForm()})
+
+class sellstockView(TemplateView):
+	template_name = 'forms/sellsnackForm.html'
+	 
+	def get(self, request):
+		form = sellstockForm()
+		return render(request, self.template_name,{'form':sellstockForm()})
+
+class spendView(TemplateView):
+	template_name = 'forms/spendForm.html'
+	 
+	def get(self, request):
+		form = spendForm()
+		return render(request, self.template_name,{'form':spendForm()})
+
+# class productserviceView(TemplateView):
 
 	# def post(self, request):
 	# 	if request.method =='POST':
-	# 		form =AddForm(request.POST)
+	# 		form =buysnackForm(request.POST)
 
 	# 		if form.is_valid():
 				 
-	# 			name = form.cleaned_data['name']
-	# 			description = form.cleaned_data['description']	
+	# 			quantity = form.cleaned_data['quantity']
+	# 			amount = form.cleaned_data['unit_price']	
 
 	# 			print(name, description)
 
-	# 	args = {'form':form, 'name':name, 'desctiption':description}
+	# 	args = {'form':form, 'quantity':quantity, 'unit_price':unit_price}
 	# 	return render(request, self.template_name,args)
 	
 
@@ -167,3 +215,5 @@ class registerView(TemplateView):
 		
 
 		return render(request, self.template_name,{})
+
+
