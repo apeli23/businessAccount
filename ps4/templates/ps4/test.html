@@ -3,31 +3,93 @@
 {%load static%}
 
 {%block content%}
-<div class="container">
-	<div class="col-md-8">		
- 		 
-		<a class="btn btn-primary" href="#" data-toggle="modal" data-target="#productservice">Add Product or Service</a>
-		<div class="divider"></div>
-		<br>		
-		<a class="btn btn-primary" href="/income/" >Income</a>
-		<div class="divider"></div><br>
-		<a class="btn btn-primary" href="/buysnack/" >Buy Snack</a>
-		<div class="divider"></div><br>
-		<a class="btn btn-primary" href="/sellsnack/" >Sell Snack</a>
-		<div class="divider"></div><br>
-		<a class="btn btn-primary" href="/spend/" >Spend</a><br>
+<!-- Products and Services Table -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Products and Services</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th scope="col">Product/Service</th>
+                      <th scope="col">ID</th>
+                      <th scope="col">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  	{%for post in data%}
+                  <tr>
+                  	<td>{{post.name}}</td>
+                  	<td>{{post.id}}</td>
+                  	<td>{{post.description}}</td>
+                  </tr>
+                  	{% endfor%}
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th scope="col">Product/Service</th>
+                      <th scope="col">ID</th>
+                      <th scope="col">Description</th>
+                    </tr>
+                  </tfoot>
+                  <tbody> 
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
-		<h2>{{text}}</h2>
- {%for name in post%}
- 		<h1>{{name.name}}</h1>
- {%endfor%}
- {%for description in post%}
- 		<h1>{{description.description}}</h1>	
- {%endfor%}
- 	</div> 
+<!-- Products and Services Table -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Transactions</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th scope="col">DATE</th>
+                      <th scope="col">TRANSACTION_ID</th>
+                      <th scope="col">PRODUCT/SERVICE</th>
+                      <th scope="col">TRANSACTION TYPE</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Unit Price</th>
+                       
+                    </tr>
+                  </thead>
+                  <tbody>
 
- 	 
-</div>
+                  <tr>
+                  	<td>date</td>
+                  	<td>id</td>
+                  	<td>product/service</td>
+                  	<td>type</td>
+                  	<td>quantity</td>
+                  	<td>amount</td>
+                  </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th scope="col">DATE</th>
+                      <th scope="col">TRANSACTION_ID</th>
+                      <th scope="col">PRODUCT/SERVICE</th>
+                      <th scope="col">TRANSACTION TYPE</th>	                      
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Unit Price</th>
+                       
+                    </tr>
+                  </tfoot>
+                  <tbody> 
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+             
 
 {%endblock%}
 

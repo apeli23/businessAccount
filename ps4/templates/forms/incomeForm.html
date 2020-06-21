@@ -6,12 +6,11 @@
      <p class="alert-danger"></p>
      <form action="." method="post">
        
-       {{form}}<br>  
-       {% csrf_token %}
-        
-       <input type="hidden" name="csrfmiddlewaretoken" value="SpDX8Em8QjCvTM2ED2UtqXGOknVmd2jd28rEhpn3GSABU7L6w6ZxxUmB6ZwBwj1G">
        
-       <div class="row justify-content-center col-12">
+       {{form.unit_price}}<br>  
+      
+       {% csrf_token %}
+      <div class="row justify-content-center col-12">
        <button class="btn btn-primary" type="submit" data-dismiss="modal">Submit</button>
        </div><br>
        

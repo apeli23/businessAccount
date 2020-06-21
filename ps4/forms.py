@@ -45,7 +45,7 @@ class sellstockForm(forms.ModelForm):
 		model = Transactions
 		fields = ('quantity', )
 # drinks form
-class buysnackForm(forms.ModelForm):
+class buystockForm(forms.ModelForm):
 	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
 		attrs={
 			'class':'form-control',

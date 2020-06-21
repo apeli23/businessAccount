@@ -15,16 +15,18 @@ class Transactions(models.Model):
 		
 		('Income', 'income'),
 		('Expense','expense'),
+		('Liability', 'liability'),
 		 		
 		)
 
 	date_created = models.DateTimeField(auto_now_add=True)
 	date_updated = models.DateTimeField(auto_now=True)
-	is_liability = models.BooleanField(default=False)
+	# is_liability = models.BooleanField(default=False)
 	transaction_type = models.CharField(max_length=10, blank=False, null=False, choices=TRANSACTION_TYPE,default='Income')
 	quantity = models.IntegerField(default=0)
 	unit_price = models.DecimalField(decimal_places=2, max_digits=8)
 	productsandservices = models.ForeignKey(ProductsandServices, default = 1,on_delete=models.CASCADE)
-	description = models.TextField(max_length=200)
+	# description = models.TextField(max_length=200)
 	customer_name = models.CharField(max_length=15, default='client')
  	
+ 	 

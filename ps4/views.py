@@ -1,11 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponse,HttpResponseRedirect
-from ps4.forms import plusForm,liabilityForm,Nameform,ProductServicesForm, buysnackForm, spendForm, sellstockForm,incomeForm
+from django.http import HttpResponse,HttpResponseRedirect  
+from ps4.forms import plusForm,liabilityForm,Nameform,ProductServicesForm, buystockForm, spendForm, sellstockForm,incomeForm
 from django.views import View
 from django.views.generic import TemplateView
 from ps4.models import ProductsandServices, Transactions
 from django.contrib.auth.models import User
+from django.core.paginator import (
+    Paginator,
+    EmptyPage,
+    PageNotAnInteger
+)
+ 
+
 # Create your views here.
  
 # class UploadsView(View):
@@ -38,11 +45,13 @@ class testView(TemplateView):
 	def get(self,request ):
 		form = ProductServicesForm()
 		post = ProductsandServices.objects.all() 
-		transactions = Transactions.objects.all()
+		# transactions = Transactions.objects.all()
 		print(post)
 
 		args = {'form':form, 'post':post}
 		return render(request, self.template_name, args)
+
+ 
 
 class incomeView(TemplateView):
 	template_name='forms/incomeForm.html'
@@ -52,35 +61,37 @@ class incomeView(TemplateView):
 		return render(request, self.template_name,{'form':incomeForm()})
 
 	def post(self, request):
-		if request.method =='POST':
-			form =incomeForm(request.POST)
+		income = incomeForm(request.POST)
 
-			if form.is_valid():
-				 
-				unit_price = form.cleaned_data['unit_price']	
-				 
-				print(name, description)
-				return HttpResponseRedirect('/')
-
-				form =incomeForm()
-		args = {'form':form, 'quantity':quantity, 'unit_price':unit_price}
+		if income.is_valid():
+			income.save()
+			income =  income.cleaned_data["unit_price"]
+			income = incomeForm()
+			return redirect('/income/')
+	# 	try:
+	# 		income = incomeForm(request.POST)
+	# 		Transactions.objects.create(
+	# 			unit_price = unit_price.data["unit_price"])
+		args = {"form":form, "unit_price":unit_price}
 		return render(request, self.template_name, args)
 
 
 class productserviceView(TemplateView):
-	template_name='ps4/productservicesForm.html'
+	template_name='forms/productservicesForm.html'
 
 	def get(self, request):
 		form = ProductServicesForm()
+		paginator = Paginator(queryset, 25)
+		
 		return render(request, self.template_name,{'form':ProductServicesForm()})
 
 
-class buysnackView(TemplateView):
+class buystockView(TemplateView):
 	template_name = 'forms/buysnackForm.html'
 	 
 	def get(self, request):
-		form = buysnackForm()
-		return render(request, self.template_name,{'form':buysnackForm()})
+		form = buystockForm()
+		return render(request, self.template_name,{'form':buystockForm()})
 
 class sellstockView(TemplateView):
 	template_name = 'forms/sellsnackForm.html'
