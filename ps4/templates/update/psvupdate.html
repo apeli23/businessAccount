@@ -1,0 +1,24 @@
+{% extends "ps4/base.html" %}
+{% block title %}{{data.name | lower}}{% endblock %}
+{% block content %}
+<div class="row card col-6 offset-3" style="margin-top:60px">
+	<form method="POST" action="/productservice/edit/{{data.id}}" novalidate>
+		{% csrf_token %}
+		<div class="card-header col-12 text-center">
+			EDIT	{{data.name | upper}} 
+
+		</div>
+		<br>	
+		<p>
+			<input type="text" name="name" class="form-control" placeholder="Name" value="{{ data.name }}">
+				<br>	
+			<input type="text" name="description" class="form-control" placeholder="Name" value="{{ data.description }}">
+		</p>
+		<div class="card-footer row justify-content-center col-12">
+			<button type="submit" class="btn btn-info col-5">Update</button> 	
+			<a class="btn btn-info col-5" href="/productservice/">Close</a>
+		</div>
+	</form>
+	
+</div>
+{% endblock %}

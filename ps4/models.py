@@ -29,4 +29,3 @@ class Transactions(models.Model):
 	# description = models.TextField(max_length=200)
 	customer_name = models.CharField(max_length=15, default='client')
  	
- 	 

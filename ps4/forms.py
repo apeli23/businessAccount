@@ -15,26 +15,107 @@ class incomeForm(forms.ModelForm):
 	unit_price = forms.IntegerField(required=True, widget=forms.TextInput(
 		attrs={
 			'class':'form-control',
-	# 		'placeholder': 'Quantity'
+			'placeholder': 'Income Amount:'
 		}))
 	 
 	class Meta:
 		model = Transactions
 		fields = ('unit_price',)
 
-# snacks form
-class buysnackForm(forms.ModelForm):
+class transactionForm(forms.ModelForm):
+		 
+	class Meta:
+		model = Transactions
+		fields = ('unit_price','productsandservices', 'unit_price',) #transaction-type
+
+			# SNACK FORM
+
+# biscut
+class buybiscutForm(forms.ModelForm):
 	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
 		attrs={
 			'class':'form-control',
-			'placeholder': 'Quantity'
+			'placeholder': 'Product quantity:'
+		}))
+	unit_price =  forms.DecimalField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'product price:'
 		}))
 	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity','unit_price',)
+
+class sellbiscutForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'quantity of product sold:'
+		}))
+	
+	class Meta:
+		model = Transactions
+		fields = ('quantity',)
+
+# pk
+class buypkForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'Product quantity:'
+		}))
+	unit_price =  forms.DecimalField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'product price:'
+		}))
+	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity','unit_price',)
+
+class sellpkForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'quantity of product sold:'
+		}))
+	
+	class Meta:
+		model = Transactions
+		fields = ('quantity',)
+
+# lolipop
+class buylolipopForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'Product quantity:'
+		}))
+	unit_price =  forms.DecimalField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'product price:'
+		}))
+	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity','unit_price',)
+
+class selllolipopForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'quantity of product sold:'
+		}))
+	
 	class Meta:
 		model = Transactions
 		fields = ('quantity',)
 
 class sellstockForm(forms.ModelForm):
+
 	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
 		attrs={
 			'class':'form-control',
@@ -44,12 +125,119 @@ class sellstockForm(forms.ModelForm):
 	class Meta:
 		model = Transactions
 		fields = ('quantity', )
-# drinks form
+
+class buysodaForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'Product quantity:'
+		}))
+	unit_price =  forms.DecimalField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'product price:'
+		}))
+	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity','unit_price',)
+
+class buypkForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'Product quantity:'
+		}))
+	unit_price =  forms.DecimalField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'product price:'
+		}))
+	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity','unit_price',)
+
+class buylolipopForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'Product quantity:'
+		}))
+	unit_price =  forms.DecimalField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'product price:'
+		}))
+	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity','unit_price',)
+ 
+
+class sellsodaForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'Bottle quantity sold:'
+		}))
+	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity',)
+
+class buyenergydrinkForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'Bottle quantity received:'
+		}))
+	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity',)
+
+
+class sellenergydrinkForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'Bottle quantity received:'
+		}))
+	 
+	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity',)
+
+class buyjuiceForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'Amount Aquired:'
+		}))
+	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity',)
+
+ 
+class selljuiceForm(forms.ModelForm):
+	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'Amount Aquired:'
+		}))
+	 
+	class Meta:
+		model = Transactions
+		fields = ('quantity',)
+		
 class buystockForm(forms.ModelForm):
 	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
 		attrs={
 			'class':'form-control',
-			'placeholder': 'Quantity'
+			'placeholder': 'Quantity:'
 		}))
 	 
 	class Meta:
@@ -67,19 +255,35 @@ class ContactForm(forms.Form):
 
 class ProductServicesForm(forms.ModelForm):
 
-	name = forms.CharField(required=True, widget=forms.TextInput(
-		attrs={
-			'class':'form-control',
-			'placeholder': 'State the product or service'
-		}))
-	description = forms.CharField( widget=forms.Textarea(
-		attrs={
-			'class':'form-control',
-			'placeholder': 'describe product or service'
-		}))
+	# name = forms.CharField(required=True, widget=forms.TextInput(
+	# 	attrs={
+	# 		'class':'form-control',
+	# 		'placeholder': 'State the product or service'
+	# 	}))
+	# description = forms.CharField( widget=forms.Textarea(
+	# 	attrs={
+	# 		'class':'form-control',
+	# 		'placeholder': 'describe product or service'
+	# 	}))
 	class Meta:
 		model = ProductsandServices
-		fields = ('name', 'description',)
+		fields = '__all__'
+
+class TransactionsForm(forms.ModelForm):
+
+	# name = forms.CharField(required=True, widget=forms.TextInput(
+	# 	attrs={
+	# 		'class':'form-control',
+	# 		'placeholder': 'State the product or service'
+	# 	}))
+	# description = forms.CharField( widget=forms.Textarea(
+	# 	attrs={
+	# 		'class':'form-control',
+	# 		'placeholder': 'describe product or service'
+	# 	}))
+	class Meta:
+		model = Transactions
+		fields = '__all__'
 class spendForm(forms.ModelForm):
 
 	unit_price = forms.DecimalField(required=True, widget=forms.TextInput(
@@ -90,7 +294,7 @@ class spendForm(forms.ModelForm):
 	description = forms.CharField( widget=forms.Textarea(
 		attrs={
 			'class':'form-control',
-			'placeholder': 'State reason'
+			'placeholder': 'State product or service'
 		}))
 	 
 	 

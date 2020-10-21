@@ -242,7 +242,7 @@
                 <span class="icon text-white-50">
                       
                           Select Drink
-                    </a>
+                    
                     <div class="dropdown-menu dropdown-menu animated--fade-in" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Soda--><span>Ksh.30</span></a>
                         <div class="dropdown-divider"></div>
@@ -250,11 +250,36 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Juices--><span>Ksh.30</span></a>
                     </div>
+                    </a>
                      <div class="divider"></div>
                      <br>
-                <div class="form-group">
+
+
+                    <div class="row" style="margin-top: 60px">
+                    <div class="card card-block col-md-3 offset-3">
+                      {% if Status %}
+                      <p>
+                       <span class="alert-success">{{ Message }}</span>
+                        </p>
+                        {% else %}
+                        <p class="alert-danger">{{Message}}</p>
+                        <form action="." method="post">
+                         {{ form.as_p }}
+                         {% csrf_token %}
+       
+                         <div class="row justify-content-center col-12">
+                          <button class="btn btn-primary" type="submit"  data-dismiss="modal">Submit</button>
+                          </div><br>
+       
+                          </form>
+                          {% endif %}
+                     </div>
+                      </div>
+
+               <!--  <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="exampleInputAmount" aria-describedby="amountHelp" placeholder="Quantity">
-                </div>
+                </div> -->
+              </span>
             </div>
           <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

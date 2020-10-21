@@ -1,4 +1,4 @@
-xx{% extends "ps4/base.html" %}
+{% extends "ps4/base.html" %}
 {%load static%}
 {% block content %}
          <!-- Begin Page Content -->
@@ -41,9 +41,9 @@ xx{% extends "ps4/base.html" %}
                     </div>
                   </div>
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#add_drink">add</a>
+                     <a class="btn btn-primary" href="/buysoda/">buy</a>
                     
-                    <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#sell_drink">sell</a>
+                    <a class="btn btn-primary" href="/sellsoda/">sell</a>
                   </div>
                 </div>
               </div>
@@ -72,9 +72,8 @@ xx{% extends "ps4/base.html" %}
                     </div>
                   </div>
                  <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#add_drink">
-                    add</a>
-                    <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#sell_drink">sell</a>
+                    <a class="btn btn-primary" href="/buyenergydrink/">buy</a>
+                    <a class="btn btn-primary" href="/sellenergydrink/">sell</a>
                   </div>
                 </div>
               </div>
@@ -103,13 +102,12 @@ xx{% extends "ps4/base.html" %}
                     </div>
                   </div>
                   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#add_drink">
-                    add</a>
-                    <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#sell_drink">sell</a>
-                  </div>
-                </div>
-              </div>
+                    <a class="btn btn-primary" href="/buyjuice/">buy</a>
+                    <a class="btn btn-primary" href="/selljuice/">sell</a>
             </div>
+          </div>
+           </div>
+           </div>
             <!-- Liabilities -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
@@ -131,6 +129,8 @@ xx{% extends "ps4/base.html" %}
             </div>
           </div>
        </div>
+     
+
       <!-- End of Main Content -->
 {% endblock %}
 

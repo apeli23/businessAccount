@@ -1,0 +1,51 @@
+{% extends "ps4/base.html" %}
+{% block title %}{{data.name | lower}}{% endblock %}
+{% block content %}
+ <div class="row card col-6 offset-3" style="margin-top:60px">
+	<form method="POST" action="/transactions/edit/{{tns.id}}" novalidate>
+		{% csrf_token %}
+		<div class="card-header col-12 text-center">
+			EDIT TRANSACTION
+
+		</div>
+		<br>	
+		<p>
+			<select name="T_type" class="form-control" id="T_type">
+				{% for k,v in transaction_type %}
+					{% if k == tns.transaction_type %}
+						<option value='{{k}}' selected>{{v}}</option>
+					{% else %}
+						<option value='{{k}}'>{{v}}</option>
+					{% endif %}
+				{% endfor %}
+			</select>
+			<br>
+
+			<select name="psv" class="form-control" id="psv">
+				{% for psv in productservice %}
+					{% if psv.id == tns.productsandservices.id %}
+						<option value='{{psv.id}}' selected>{{psv.name}}</option>
+					{% else %}
+						<option value='{{psv.id}}'>{{psv.name}}</option>
+					{% endif %}
+				{% endfor %}	
+			</select>
+			<br>	
+			<!-- <input type="text" name="type" class="form-control"value="{{ data.transaction_type }}">
+				<br>	 -->
+			<input type="text" name="quantity" class="form-control" placeholder="quantity" value="{{ data.quantity }}">
+			<br>
+			<input type="text" name="unit_price" class="form-control" placeholder="amount:" value="{{ data.unit_price }}">
+				<br>	
+			
+				
+			<input type="text" name="customer_name" class="form-control" placeholder="customer_name" value="{{ data.customer_name }}">
+		</p>
+		<div class="card-footer row justify-content-center col-12">
+			<button type="submit" class="btn btn-info col-5">Update</button> 	
+			<a class="btn btn-info col-5" href="/transactions/">Close</a>
+		</div>
+	</form>
+	
+</div>
+{% endblock %}

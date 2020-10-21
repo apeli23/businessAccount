@@ -4,7 +4,7 @@
 
 {%block content%}
 <!-- Products and Services Table -->
-          <div class="card shadow mb-4">
+          <!-- <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Products and Services</h6>
             </div>
@@ -13,17 +13,19 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+
+                      <th scope="col">PRODUCT/SERVICE_ID</th>
                       <th scope="col">Product/Service</th>
-                      <th scope="col">ID</th>
                       <th scope="col">Description</th>
                     </tr>
                   </thead>
                   <tbody>
-                  	{%for post in data%}
+                  	{%for data in post%}
                   <tr>
-                  	<td>{{post.name}}</td>
-                  	<td>{{post.id}}</td>
-                  	<td>{{post.description}}</td>
+
+                  	<td>{{data.id}}</td>
+                  	<td>{{data.name}}</td>
+                  	<td>{{data.description}}</td>
                   </tr>
                   	{% endfor%}
                   </tbody>
@@ -34,15 +36,15 @@
                       <th scope="col">Description</th>
                     </tr>
                   </tfoot>
-                  <tbody> 
+                  <tbody>
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
+          </div> -->
 
 <!-- Products and Services Table -->
-          <div class="card shadow mb-4">
+          <!-- <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Transactions</h6>
             </div>
@@ -57,39 +59,40 @@
                       <th scope="col">TRANSACTION TYPE</th>
                       <th scope="col">Quantity</th>
                       <th scope="col">Unit Price</th>
-                       
+
                     </tr>
                   </thead>
                   <tbody>
-
+                    {%for transactions in data%}
                   <tr>
-                  	<td>date</td>
-                  	<td>id</td>
-                  	<td>product/service</td>
-                  	<td>type</td>
-                  	<td>quantity</td>
-                  	<td>amount</td>
+                  	<td>{{transactions.date_created}}</td>
+                  	<td>{{data.id}}</td>
+                  	<td>{{data.productsandservices}}</td>
+                  	<td>{{data.transaction_type}}</td>
+                  	<td>{{data.quantity}}</td>
+                  	<td>{{data.unit_price}}</td>
                   </tr>
+                  {% endfor %}
                   </tbody>
                   <tfoot>
                     <tr>
                       <th scope="col">DATE</th>
                       <th scope="col">TRANSACTION_ID</th>
                       <th scope="col">PRODUCT/SERVICE</th>
-                      <th scope="col">TRANSACTION TYPE</th>	                      
+                      <th scope="col">TRANSACTION TYPE</th>
                       <th scope="col">Quantity</th>
                       <th scope="col">Unit Price</th>
-                       
+
                     </tr>
                   </tfoot>
-                  <tbody> 
+                  <tbody>
                   </tbody>
                 </table>
               </div>
             </div>
-          </div>
+          </div> -->
 
-             
+
 
 {%endblock%}
 
