@@ -5,6 +5,66 @@ from .models import Transactions,ProductsandServices
 # 	# amount = forms.IntegerField()
 # 	post = forms.CharField()
 
+
+class TransactionsForm(forms.ModelForm):
+
+	TRANSACTION_TYPES = (
+		('Income', 'income'),
+		('Expense','expense'),
+		('Liability', 'liability'),
+	)
+
+	transaction_type = forms.ChoiceField(
+		choices=TRANSACTION_TYPES,
+		required=True,
+		label='Types',
+		widget=forms.Select(
+			attrs={
+				'class': 'form-control', 
+			}
+		)
+	)
+	
+	productsandservices = forms.ModelChoiceField(
+		queryset=ProductsandServices.objects.all(),
+		widget=forms.Select(
+			attrs={
+				'class': 'form-control',
+			}
+		
+		)
+	)
+	
+	quantity = forms.IntegerField( 
+		label='',
+        required=True,
+        widget=forms.TextInput(
+			attrs={
+			'class':'form-control',
+			'placeholder':'ENTER QUANTITY:',
+			}
+		)
+	)
+
+	unit_price = forms.IntegerField( 
+		label='',
+        required=True,
+        widget=forms.TextInput(
+				attrs={
+					'class':'form-control',
+					'placeholder':'ENTER UNIT_PRICE:',
+			 
+		}))
+	customer_name = forms.CharField( widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			 
+		}))
+	 
+	class Meta:
+		model = Transactions
+		fields = '__all__'
+
 class plusForm(forms.Form):
 	# amount = forms.IntegerField()
 	 
@@ -22,11 +82,11 @@ class incomeForm(forms.ModelForm):
 		model = Transactions
 		fields = ('unit_price',)
 
-class transactionForm(forms.ModelForm):
+# class transactionForm(forms.ModelForm):
 		 
-	class Meta:
-		model = Transactions
-		fields = ('unit_price','productsandservices', 'unit_price',) #transaction-type
+# 	class Meta:
+# 		model = Transactions
+# 		fields = ('quantity','productsandservices', 'unit_price',) #transaction-type
 
 			# SNACK FORM
 
@@ -255,35 +315,20 @@ class ContactForm(forms.Form):
 
 class ProductServicesForm(forms.ModelForm):
 
-	# name = forms.CharField(required=True, widget=forms.TextInput(
-	# 	attrs={
-	# 		'class':'form-control',
-	# 		'placeholder': 'State the product or service'
-	# 	}))
-	# description = forms.CharField( widget=forms.Textarea(
-	# 	attrs={
-	# 		'class':'form-control',
-	# 		'placeholder': 'describe product or service'
-	# 	}))
+	name = forms.CharField(required=True, widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'State the product or service'
+		}))
+	description = forms.CharField( widget=forms.Textarea(
+		attrs={
+			'class':'form-control',
+			'placeholder': 'describe product or service'
+		}))
 	class Meta:
 		model = ProductsandServices
 		fields = '__all__'
 
-class TransactionsForm(forms.ModelForm):
-
-	# name = forms.CharField(required=True, widget=forms.TextInput(
-	# 	attrs={
-	# 		'class':'form-control',
-	# 		'placeholder': 'State the product or service'
-	# 	}))
-	# description = forms.CharField( widget=forms.Textarea(
-	# 	attrs={
-	# 		'class':'form-control',
-	# 		'placeholder': 'describe product or service'
-	# 	}))
-	class Meta:
-		model = Transactions
-		fields = '__all__'
 class spendForm(forms.ModelForm):
 
 	unit_price = forms.DecimalField(required=True, widget=forms.TextInput(

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from ps4.forms import (plusForm, liabilityForm,	Nameform, ProductServicesForm, TransactionsForm,buystockForm, buysodaForm, 
-					sellsodaForm, spendForm, sellstockForm, incomeForm, transactionForm,buybiscutForm, sellbiscutForm, 
+					sellsodaForm, spendForm, sellstockForm, incomeForm, buybiscutForm, sellbiscutForm, 
 					buypkForm, sellpkForm, buylolipopForm, selllolipopForm, buyenergydrinkForm,sellenergydrinkForm, buyjuiceForm, selljuiceForm)
 from django.views import View
 from django.views.generic import TemplateView
@@ -16,38 +16,42 @@ from django.core.paginator import (
 
 # Create your views here.
 
-# class UploadsView(View):
-
-# 	template_name = 'main/test.html'
-
-# 	def get(self,request ):
-# 		if self.request.method =='POST':
-# 			form = Nameform(request.POST)
-
-# 			if form.is_valid():
-# 				return HttpResponseRedirect('/index/')
-
-# 		else:
-# 			form = Nameform()
-# 		return render(request, self.template_name,{'form':form})
-
-
-# class buysnackView(TemplateView):
-# 	template_name = 'ps4/test.html'
-
-# 	def get(self,request ):
-# 		sform = buysnackForm()
-# 		args = {'sform':sform}
-# 		return render(request, self.template_name, args)
-
-
 class psvView(TemplateView):
-    template_name = 'records/psv.html'
+    template_name = 'forms/productservicesForm.html'
+    def get(self, request, *args, **kwargs):
+         
+        return render(request, self.template_name, {'form': ProductServicesForm()})
+
+    def post(self, request, *args, **kwargs):
+        try:
+            psv = ProductServicesForm(request.POST)
+            ProductsandServices.objects.create(
+                name=psv.data['name'],
+                description=psv.data['description'],
+            )
+            context = {
+                "Message": "Success",
+                "Success": True
+            }
+            
+        except Exception as e:
+            context = {
+                "Message": str(e),
+                "Success": False
+            }
+
+        # this should re
+        return redirect('/productservicelist/')
+
+
+class psvlistView(TemplateView):
+    template_name = 'records/psvlist.html'
     def get(self, request):
         form = ProductServicesForm()
         post = ProductsandServices.objects.all()
         args = {'form':form, 'post':post}
-        return render(request, self.template_name, args)
+        return render( request, self.template_name, args)
+
 
 class psvupdateView(TemplateView):
 	template_name = 'update/psvupdate.html'
@@ -61,16 +65,105 @@ class psvupdateView(TemplateView):
 		psv.name = form.data['name']
 		psv.description = form.data['description']
 		psv.save()
-		return redirect('/productservice/')
+		return redirect('/productservicelist/')
 
 class transactionsView(TemplateView):
-    template_name = 'records/transactions.html'
-    def get(self, request):
-        form = TransactionsForm()
-        post = Transactions.objects.all()
-        args = {'form':form, 'post':post}
-        return render(request, self.template_name, args)
+    template_name = 'forms/tnsform.html' 
 
+    def get(self, request, *args, **kwargs):
+         
+        return render(request, self.template_name, {'form': TransactionsForm()})
+    def post(self, request, *args, **kwargs):
+        try:
+            tns = TransactionsForm(request.POST)
+            Transactions.objects.create(
+            	transaction_type=tns.data['transaction_type'],
+            	productsandservices=ProductsandServices.objects.get(id=tns.data['productsandservices']),
+                quantity=tns.data['quantity'],
+                unit_price=tns.data['unit_price'],
+                customer_name=tns.data['customer_name'],
+            )
+            context = {
+                "Message": "Success",
+                "Success": True
+            }
+            
+        except Exception as e:
+            context = {
+                "Message": str(e),
+                "Success": False
+            }
+
+        # this should re
+        return redirect('/transactionslist/')
+class tnslistView(TemplateView):
+    template_name = 'records/tnslist.html' 
+    # def get(self, request):
+    #     form = TransactionsForm()
+    #     tns = Transactions.objects.all()
+    #     psv = ProductsandServices.objects.all()
+    #     args = {'form':form, 'tns':tns}
+    #     return render( request, self.template_name, args)
+
+
+    def get(self, request, *args, **kwargs):
+        # pk = self.kwargs.get('pk')
+        # form = TransactionsForm()
+        # tns = Transactions.objects.all()
+        # psv = ProductsandServices.objects.all()
+        # args = {'form':form, 'tns':tns, 'psv':psv}
+        # return render( request, self.template_name, args)
+       
+        queryset = Transactions.objects.all().order_by('date_created')
+        # psv = ProductsandServices.objects.get(id=pk)
+        paginator = Paginator(queryset, 5)
+        page = request.GET.get('page')
+       	
+       	try:
+            tns = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer deliver the first page
+            tns = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range deliver last page of results
+            tns = paginator.page(paginator.num_pages)
+        context = {
+            "title": "tns",
+            "data": tns,
+            "page": page,
+        }
+        
+        return render(request, self.template_name , context=context)
+
+
+class tnsView(TemplateView):
+    template_name = 'forms/tnsForm.html'
+    def get(self, request, *args, **kwargs):
+         
+        return render(request, self.template_name, {'form': TransactionsForm()})
+
+    def post(self, request, *args, **kwargs):
+        template_name = 'forms/tnsform.html'
+        try:
+            transaction = TransactionsForm(request.POST)
+            # print(school.data)
+            Transactions.objects.create(
+                transaction_type=transaction.data['transaction_type'],
+                quantity=transaction.data['quantity'],
+                unit_price=transaction.data['unit_price'],
+                productservices=ProductsandServices.objects.get(id=transaction.data['productservices']),
+                client_name=transaction.data['client_name'],
+            )
+            context = {
+                'Message': 'Success',
+                'Success': True
+            }
+        except Exception as e:
+            context = {
+                'Message': str(e),
+                'Success': False
+            }
+        return render(request, self.template_name, context=context)
 
 class tnsupdateView(TemplateView):
 	template_name = 'update/tnsupdate.html'
@@ -80,24 +173,24 @@ class tnsupdateView(TemplateView):
 		data = {
 			"tns": Transactions.objects.get(id=pk),
 			"productservice":ProductsandServices.objects.all(),
-			 "transaction_type": [
-                ('INC', 'Income'),
-                ('EXP', 'Expense'),
-                ('LYB', 'Liability'),
+			 "transaction_type": [		      
+				('Income', 'income'),
+				('Expense','expense'),
+				('Liability', 'liability'),
             ]
 		}
-		return render(request, self.template_name,  data)
+		return render(request, self.template_name,  context=data)
 
 	def post(self, request, pk):
-		tns = Transactions.objects.get(id=pk)
 		form = TransactionsForm(request.POST)
+		tns = Transactions.objects.get(id=pk)
 		tns.transaction_type = form.data['transaction_type']
-		tns.productsandservices = ProductsandServices.objects.get(id=form.data['productsandservices'])
+		# tns.productsandservices = ProductsandServices.objects.get(id=form.data['productsandservices'])
 		tns.quantity = form.data['quantity']
 		tns.unit_price = form.data['unit_price']		
 		tns.customer_name = form.data['customer_name']
 		tns.save()
-		return redirect('/transactions/'+ str(pk))
+		return redirect('/transactionslist/')
 
 class testView(TemplateView):
     template_name = 'ps4/test.html'
@@ -107,21 +200,13 @@ class testView(TemplateView):
 
         args = {'form':form, 'post':post}
         return render(request, self.template_name, args)
-# class buybiscutView(TemplateView):
-# 	template_name = 'forms/sellbiskutForm.html'
 
-# 	def get(self, request):
-# 		form = buybiscutForm()
-# 		return render(request, self.template_name,{'form':buybiscutForm()})
+class transactionsDeleteView(View): 
 
-# class transactionsView(TemplateView):
-#     template_name = 'records/transactions.html'
-#     def get(self,request ):
-#         form = transactionForm()
-#         transactions = Transactions.objects.all()
-#         args={'form':form}
-# 		return render(request, self.template_name, args)
-
+    def get(self, request, pk):
+        Transactions.objects.get(id=pk).delete()
+        return redirect('/transactionslist/')
+ 	
 
 
 class incomeView(TemplateView):
@@ -638,7 +723,7 @@ class productserviceDeleteView(View):
 
     def get(self, request, pk):
         ProductsandServices.objects.get(id=pk).delete()
-        return redirect('/productservice/')
+        return redirect('/productservicelist/')
 
 # class productserviceUpdateView(View):
 # 	template_name = 'update/updateproductservice.html'

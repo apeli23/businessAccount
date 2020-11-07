@@ -14,10 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from ps4.views import (indexView, testView, transactionsView, psvupdateView, tnsupdateView, playstationView, snacksView, drinksView, 
+from ps4.views import (indexView, testView, tnsView, psvView,  psvlistView,tnslistView,transactionsView, psvupdateView, tnsupdateView, playstationView, snacksView, drinksView, 
                        chartsView, buybiscutView, sellbiscutView, buypkView, sellpkView, buylolipopView,selllolipopView, buystockView, sellstockView, buysodaView, sellsodaView, recordsView, loginView,
-                       forgotpasswordView, productserviceDeleteView, buyenergydrinkView, sellenergydrinkView, buyjuiceView, selljuiceView, registerView,
-                       spendView, incomeView, psvView)
+                       forgotpasswordView, productserviceDeleteView, transactionsDeleteView, buyenergydrinkView, sellenergydrinkView, buyjuiceView, selljuiceView, registerView,
+                       spendView, incomeView,)
 
 app_name = 'ps4'
 urlpatterns = [
@@ -46,15 +46,18 @@ urlpatterns = [
     url(r'^forgotpassword/$', forgotpasswordView.as_view(), name="forgotpassword"),
     url(r'^register/$', registerView.as_view(), name="register"),
     url(r'^buystock/$', buystockView.as_view(), name="buystock"),
-    url(r'^productservice/$', psvView.as_view(), name="productservice"),
+    url(r'^productservicelist/$', psvlistView.as_view(), name="productservicelist"),
+    url(r'^transactionslist/$', tnslistView.as_view(), name="transactionslist"),
     url(r'^spend/$', spendView.as_view(), name="spendForm"),
     url(r'^sellstock/$', sellstockView.as_view(), name="sellstockForm"),
     url(r'^income/$', incomeView.as_view(), name="incomeForm"),
     url(r'^transactions/$', transactionsView.as_view(), name="transactions"),
-    url(r'^productservice/delete/(?P<pk>[0-9]+)$', productserviceDeleteView.as_view(),
-        name="deleteProductsandServices"),
+    # url(r'^transactionform/$', psvView.as_view(), name="productserviceform"),
+    url(r'^productservice/$', psvView.as_view(), name="productservices"),
+    url(r'^productservice/delete/(?P<pk>[0-9]+)$', productserviceDeleteView.as_view(),name="deleteProductsandServices"),
     url(r'^productservice/edit/(?P<pk>[0-9]+)$',psvupdateView.as_view(),
          name="editproductservice"),
-     url(r'^transactions/edit/(?P<pk>[0-9]+)$',tnsupdateView.as_view(),
-         name="edittransaction"),
+    url(r'^transactions/edit/(?P<pk>[0-9]+)$',tnsupdateView.as_view(), name="edittransaction"),
+    url(r'^transactions/delete/(?P<pk>[0-9]+)$', transactionsDeleteView.as_view(),name="deleteTransactions"),
 ]
+ 

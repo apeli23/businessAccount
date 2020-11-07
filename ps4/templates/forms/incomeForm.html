@@ -9,7 +9,7 @@
      {% else %}
      <p class="alert-danger">{{Message}}</p>
      <form action="." method="post">
-       {{ form.as_p }}
+       {{ form  }}
        {% csrf_token %}
        
       <div class="row justify-content-center col-12">

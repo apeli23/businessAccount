@@ -1,7 +1,6 @@
-{% extends "ps4/base.html"%}
-
+{% extends "ps4/base.html" %}
+{% block title %} %ADD TRANSACTION{% endblock %}
 {% block content %}
-       
  <div class="row" style="margin-top: 60px">
   <div class="card card-block col-md-6 offset-3">
    {% if Status %}
@@ -14,13 +13,16 @@
        {{ form.as_p }}
        {% csrf_token %}
        
-       <div class="row justify-content-center col-12">
+      <div class="row justify-content-center col-12">
         <input type="submit" value="Save" class="btn btn-info col-4">
-       </div>
+      </div>
        
      </form>
    {% endif %}
   </div>
 </div>
- 
+
+
 {% endblock %}
+
+
