@@ -1,0 +1,39 @@
+{% extends "ps4/base.html"%}
+{% block title %}ADD SAVING{% endblock %}
+{% block content %}
+<div class="row" style="margin-top: 60px">
+  <div class="card card-block col-md-3 offset-3">
+     {% if Status %}
+      <p>
+       <span class="alert-success">{{ Message }}</span>
+      </p>
+     {% else %}
+     <p class="alert-danger">{{Message}}</p>
+
+     <form action="." method="post">
+      {% csrf_token %}    
+      {{ form.amount }}<br>
+        <div class="custom-control custom-checkbox small">
+          <input type="checkbox" class="custom-control-input" onchange="showHide(this.checked)" name="chckbox" id="customChec">
+          <label class="custom-control-label" for="customChec">Expense</label>
+        </div><br>
+        
+        <div id="hiddenField" style="display:none;" > {{ form.expense }} </div><br> 
+      <div class="row justify-content-center col-12">
+       <button class="btn btn-primary" type="submit" data-dismiss="modal">Submit</button>
+       </div><br>
+       
+     </form>
+     {% endif %}
+  </div>
+</div>
+ <script>
+   function showHide(checked) {
+    if(checked == true)
+      $("#hiddenField").fadeIn();
+
+    else $("#hiddenField").fadeOut();
+   }
+ </script>
+
+{% endblock %}

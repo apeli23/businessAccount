@@ -7,12 +7,9 @@
   <meta name="description" content="">
   <meta name="apeli" content="">
 
-	{%if title %}
-	<title>Dashboard - {{title}}</title>
-	{%else%}
-	<title>Dashboard</title>
-	{%endif%}
-
+	 
+	<title>{% block title %}{% endblock %}</title>
+	  
 	{%load static%}
 	 
 

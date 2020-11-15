@@ -2,16 +2,17 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from ps4.forms import (plusForm, liabilityForm,	Nameform, ProductServicesForm, TransactionsForm,buystockForm, buysodaForm, 
 					sellsodaForm, spendForm, sellstockForm, incomeForm, buybiscutForm, sellbiscutForm, 
-					buypkForm, sellpkForm, buylolipopForm, selllolipopForm, buyenergydrinkForm,sellenergydrinkForm, buyjuiceForm, selljuiceForm)
+					buypkForm, sellpkForm, buylolipopForm, selllolipopForm, buyenergydrinkForm,sellenergydrinkForm, buyjuiceForm, selljuiceForm,savingsForm)
 from django.views import View
 from django.views.generic import TemplateView
-from ps4.models import ProductsandServices, Transactions
+from ps4.models import ProductsandServices, Transactions, Savings
 from django.contrib.auth.models import User
 from django.core.paginator import (
     Paginator,
     EmptyPage,
     PageNotAnInteger
 )
+from .filters import TransactionsFilter, SavingsFilter
 
 
 # Create your views here.
@@ -98,24 +99,12 @@ class transactionsView(TemplateView):
         return redirect('/transactionslist/')
 class tnslistView(TemplateView):
     template_name = 'records/tnslist.html' 
-    # def get(self, request):
-    #     form = TransactionsForm()
-    #     tns = Transactions.objects.all()
-    #     psv = ProductsandServices.objects.all()
-    #     args = {'form':form, 'tns':tns}
-    #     return render( request, self.template_name, args)
-
-
+    
     def get(self, request, *args, **kwargs):
-        # pk = self.kwargs.get('pk')
-        # form = TransactionsForm()
-        # tns = Transactions.objects.all()
-        # psv = ProductsandServices.objects.all()
-        # args = {'form':form, 'tns':tns, 'psv':psv}
-        # return render( request, self.template_name, args)
-       
+     
         queryset = Transactions.objects.all().order_by('date_created')
         # psv = ProductsandServices.objects.get(id=pk)
+        
         paginator = Paginator(queryset, 5)
         page = request.GET.get('page')
        	
@@ -127,12 +116,20 @@ class tnslistView(TemplateView):
         except EmptyPage:
             # If page is out of range deliver last page of results
             tns = paginator.page(paginator.num_pages)
+
+        myFilter = TransactionsFilter(request.GET, queryset)  
+        tns = myFilter.qs
         context = {
-            "title": "tns",
+        	"title": "tns",
             "data": tns,
             "page": page,
+            "myFilter":myFilter ,
         }
         
+       
+
+        # context = {'date_created':date_created,'date_updated':date_updated,'transaction_type':transaction_type,'quantity':quantity,'productsandservices':productsandservices,'client':client}
+
         return render(request, self.template_name , context=context)
 
 
@@ -724,59 +721,75 @@ class productserviceDeleteView(View):
     def get(self, request, pk):
         ProductsandServices.objects.get(id=pk).delete()
         return redirect('/productservicelist/')
-
-# class productserviceUpdateView(View):
-# 	template_name = 'update/updateproductservice.html'
-
-# 	def get(self, request, pk):
-#     	psv=ProductsandServices.objects.get(id=pk)
-#     	transaction=Transactions.objects.all()
-# 	   	args = {'psv':psv, 'transaction':transaction}
-#     	return render(request, self.template_name, args)
-
-# class productserviceUpdateView(View):
-# 	template_name ='update/updateproductservice.html'
-
-# 	def get(self,request ):
-# 		form = ProductServicesForm()
-# 		psv= ProductsandServices.objects.all()
-
-#       	args = {'form':form, 'psv':psv}
-
-# 	return render(request, self.template_name,args)
+ 
+class playstationrecordsView(TemplateView):
+    template_name = 'records/playstationrecords.html'
+    def get(self, request):
+        form = ProductServicesForm()
+        post = ProductsandServices.objects.all()
+        args = {'form':form, 'post':post}
+        return render( request, self.template_name, args)
 
 
-    # def get(self, request):
-#        psv= ProductsandServices.objects.all()
-#        form = ProductServicesForm()
-#        args = {'form':form, 'psv':psv}
+class savingsView(TemplateView):
+	template_name = 'forms/savingsForm.html'
 
-   	# return render(render,self.template_name ,{})
+	def get(self, request):
+		 
+		return render(request, self.template_name,{'form':savingsForm()})	
+ 	
+	def post(self, request, *args, **kwargs):
+		template_name = 'forms/tnsform.html'
+		try:
+			savings = savingsForm(request.POST)
+			# print(school.data)
+			Savings.objects.create(
+                 
+			amount=savings.data['amount'],
+			expense=savings.data['expense'],
+			)
+			context = {
+			'Message': 'Success',
+			'Success': True
+			}
+		except Exception as e:
+			context = {
+				'Message': str(e),
+				'Success': False
+			} 
+		return redirect('/transactionslist/')
 
-	# def get(self,request, pk):
+class savingslistView(TemplateView):
+    template_name = 'records/savingslist.html' 
+    
+    def get(self, request, *args, **kwargs):
+     
+        queryset = Savings.objects.all() 
+        # psv = ProductsandServices.objects.get(id=pk)
+        
+        paginator = Paginator(queryset, 5)
+        page = request.GET.get('page')
+       	
+       	try:
+            svn = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer deliver the first page
+            svn = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range deliver last page of results
+            svn = paginator.page(paginator.num_pages)
 
-	# 	psv = ProductsandServices.objects.all()
-	# 	form = ProductServicesForm()
-		# transactions = Transactions.objects.all()
-		# print(post)
+        myFilter = SavingsFilter(request.GET, queryset)  
+        svn = myFilter.qs
+        context = {
+        	"title": "svn",
+            "data": svn,
+            "page": page,
+            "myFilter":myFilter ,
+        }
+        
+       
 
-		# args = {'form':form, 'psv':psv}
-		# return render(request,'/update/updateproductservice.html/', args )
+        # context = {'date_created':date_created,'date_updated':date_updated,'transaction_type':transaction_type,'quantity':quantity,'productsandservices':productsandservices,'client':client}
 
-	# def post(self, request):
-	# 	psv = ProductServicesForm(request.POST)
-
-	# 	if psv.is_valid():
-
-	# 		name =  ProductsandServices.cleaned_data["name"]
-	# 		description =  ProductsandServices.cleaned_data["description"]
-	# 		psv.save()
-			# psv = ProductServicesForm()
-			# return redirect('/productservice/')
-	# 	try:
-	# 		income = incomeForm(request.POST)
-	# 		Transactions.objects.create(
-	# 			unit_price = unit_price.data["unit_price"])
-		# args = {"form":form, "psv":psv}
-		# return render(request, self.template_name )
-
+        return render(request, self.template_name , context=context)

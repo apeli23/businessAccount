@@ -1,5 +1,5 @@
 from django import forms
-from .models import Transactions,ProductsandServices
+from .models import Transactions,ProductsandServices, Savings
 
 # class testForm(forms.Form):
 # 	# amount = forms.IntegerField()
@@ -35,13 +35,12 @@ class TransactionsForm(forms.ModelForm):
 		)
 	)
 	
-	quantity = forms.IntegerField( 
+	quantity = forms.DecimalField( 
 		label='',
-        required=True,
+        required=False, 
         widget=forms.TextInput(
 			attrs={
 			'class':'form-control',
-			'placeholder':'ENTER QUANTITY:',
 			}
 		)
 	)
@@ -52,7 +51,7 @@ class TransactionsForm(forms.ModelForm):
         widget=forms.TextInput(
 				attrs={
 					'class':'form-control',
-					'placeholder':'ENTER UNIT_PRICE:',
+					'placeholder':'ENTER AMOUNT:',
 			 
 		}))
 	customer_name = forms.CharField( widget=forms.TextInput(
@@ -82,15 +81,29 @@ class incomeForm(forms.ModelForm):
 		model = Transactions
 		fields = ('unit_price',)
 
-# class transactionForm(forms.ModelForm):
-		 
-# 	class Meta:
-# 		model = Transactions
-# 		fields = ('quantity','productsandservices', 'unit_price',) #transaction-type
+class savingsForm(forms.ModelForm):
+	
+	amount = forms.IntegerField( 
+		label='',
+        required=True,
+        widget=forms.TextInput(
+				attrs={
+					'class':'form-control',
+					'placeholder':'AMOUNT'
+					 			 
+		}))
+	expense = forms.CharField( widget=forms.TextInput(
+		attrs={
+			'class':'form-control',
+			'placeholder':'EXPENSE'
+			 
+		}))
 
-			# SNACK FORM
+	class Meta:
+		model = Savings
+		fields = '__all__'
 
-# biscut
+ 
 class buybiscutForm(forms.ModelForm):
 	quantity = forms.IntegerField(required=True, widget=forms.TextInput(
 		attrs={

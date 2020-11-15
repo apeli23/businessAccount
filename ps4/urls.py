@@ -17,7 +17,7 @@ from django.conf.urls import url
 from ps4.views import (indexView, testView, tnsView, psvView,  psvlistView,tnslistView,transactionsView, psvupdateView, tnsupdateView, playstationView, snacksView, drinksView, 
                        chartsView, buybiscutView, sellbiscutView, buypkView, sellpkView, buylolipopView,selllolipopView, buystockView, sellstockView, buysodaView, sellsodaView, recordsView, loginView,
                        forgotpasswordView, productserviceDeleteView, transactionsDeleteView, buyenergydrinkView, sellenergydrinkView, buyjuiceView, selljuiceView, registerView,
-                       spendView, incomeView,)
+                       spendView, incomeView,playstationrecordsView, savingsView,savingslistView)
 
 app_name = 'ps4'
 urlpatterns = [
@@ -59,5 +59,8 @@ urlpatterns = [
          name="editproductservice"),
     url(r'^transactions/edit/(?P<pk>[0-9]+)$',tnsupdateView.as_view(), name="edittransaction"),
     url(r'^transactions/delete/(?P<pk>[0-9]+)$', transactionsDeleteView.as_view(),name="deleteTransactions"),
+    url(r'^playstationrecords/$', playstationrecordsView.as_view(), name="playstationrecords"),
+    url(r'^savings/$', savingsView.as_view(), name="savings"),
+    url(r'^savingslist/$', savingslistView.as_view(), name="savingslist"),
 ]
  

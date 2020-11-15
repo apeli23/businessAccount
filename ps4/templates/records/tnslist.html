@@ -1,11 +1,17 @@
-     {%extends 'ps4/base.html'%}
-<title> transaction</title>
+{%extends 'ps4/base.html'%}
+{% block title %}TRANSACTIONS_LIST{% endblock %}
 {%load static%}
 
 {%block content%} 
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary">TRANSACTIONS</h6>
+    <form method=get >
+      {{myFilter.form}}
+       <button class="btn btn-primary" type="submit">SEARCH
+          <i class="fas fa-search fa-sm"></i>
+        </button>
+    </form>
   </div>
   <div class="card-body">
     <div class="table-responsive">
