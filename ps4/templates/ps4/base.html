@@ -469,6 +469,8 @@
    }
  </script>
 
+ 
+
   <!-- Bootstrap core JavaScript-->
   <script src="{%static 'static/vendor/jquery/jquery.min.js'%}"></script>
   <script src="{%static 'static/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
@@ -507,6 +509,89 @@
   <script src="{%static 'static/js/demo/chart-area-demo.js'%}"></script>
   <script src="{%static 'static/js/demo/chart-area-demo.js'%}"></script>
   <script src="{%static 'static/js/demo/chart-pie-demo.js'%}"></script>
+
+    <!-- scripts-->
+ 
+
+  <!-- total_transaction_amount script-->
+  <script>
+    $(document).ready(function()
+    {
+      var amt;
+      var totalamount=0;
+      $('td:nth-child(4)').each(function()
+      {
+          amt=$(this).html();
+          totalamount+=parseInt(amt);
+          $('#totalamt').text(totalamount);
+      });
+
+    });
+ </script>
+
+ <!-- total_savings script-->
+  <script>
+    $(document).ready(function()
+    {
+      var svg;
+      var totalsavings=0;
+      $('td:nth-child(5)').each(function()
+      {
+          svg=$(this).html();
+          totalsavings+=parseInt(amt);
+          $('#totsvg').text(totaltransaction);
+      });
+
+    });
+ </script>
+
+  <!-- total_income script-->
+  <script>
+    $(document).ready(function()
+    {
+      var inc;
+      var totalinc=0;
+      $('td:nth-child(4)').each(function()
+      {
+          inc=$(this).html();
+          totalinc+=parseInt(inc);
+          $('#totalinc').text(totalinc);
+      });
+
+    });
+ </script>
+
+  <!-- total_expense script-->
+  <script>
+    $(document).ready(function()
+    {
+      var exp;
+      var totalexp=0;
+      $('td:nth-child(4)').each(function()
+      {
+          exp=$(this).html();
+          totalexp+=parseInt(exp);
+          $('#totalexp').text(totalexp);
+      });
+
+    });
+ </script>
+
+ <!-- total_savings script-->
+  <!-- <script>
+    $(document).ready(function()
+    {
+      var svg;
+      var totalsavings=0;
+      $('td:nth-child(2)').each(function()
+      {
+          svg=$(this).html();
+          totalsavings+=parseInt(svg);
+          $('#totsvg').text(totalsavings);
+      });
+
+    });
+ </script> -->
 
 </body>
 </html>

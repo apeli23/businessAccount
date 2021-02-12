@@ -21,7 +21,7 @@
 			</select>
 			<br>
 
-			<select name="psv" class="form-control" id="psv">
+			<select name="productsandservices" class="form-control" id="psv">
 				{% for pds in productservice %}
 					{% if pds.id == tns.productsandservices.id %}
 						<option value='{{pds.id}}' selected>{{pds.name}}</option>

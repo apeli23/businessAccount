@@ -14,10 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from ps4.views import (indexView, testView, tnsView, psvView,  psvlistView,tnslistView,transactionsView, psvupdateView, tnsupdateView, playstationView, snacksView, drinksView, 
+from ps4.views import (indexView, testView, tnsView, psvView, psvlistView, tnslistView, transactionsView, psvupdateView, tnsupdateView, playstationView, snacksView, drinksView, 
                        chartsView, buybiscutView, sellbiscutView, buypkView, sellpkView, buylolipopView,selllolipopView, buystockView, sellstockView, buysodaView, sellsodaView, recordsView, loginView,
                        forgotpasswordView, productserviceDeleteView, transactionsDeleteView, buyenergydrinkView, sellenergydrinkView, buyjuiceView, selljuiceView, registerView,
-                       spendView, incomeView,playstationrecordsView, savingsView,savingslistView)
+                       spendView, incomeView,playstationrecordsView, savingsView,savingslistView,savingseditView,incomelistView, expenselistView)
 
 app_name = 'ps4'
 urlpatterns = [
@@ -62,5 +62,8 @@ urlpatterns = [
     url(r'^playstationrecords/$', playstationrecordsView.as_view(), name="playstationrecords"),
     url(r'^savings/$', savingsView.as_view(), name="savings"),
     url(r'^savingslist/$', savingslistView.as_view(), name="savingslist"),
+    url(r'^savings/edit/(?P<pk>[0-9]+)$',savingseditView.as_view(), name="editsavings"),
+    url(r'^incomelist/$', incomelistView.as_view(), name="incomelist"),
+    url(r'^expenselist/$', expenselistView.as_view(), name="expenselist"),
 ]
  

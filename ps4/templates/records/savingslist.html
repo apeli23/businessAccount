@@ -26,17 +26,23 @@
           <tr>                 
         </thead>
         <tbody>
+          
           {%for svn in data%}
           <tr>
                     
-          <td> {{svn.date}}</td> 
-          <td>{{svn.amount}}</td>
-          <td>{{svn.expense}}</td>
+            <td> {{svn.date}}</td> 
+            <td>{{svn.amount}}</td>
+            <td>{{svn.expense}}</td>
            
-          <td><a style="text-decoration:None; color:black;" href="/savings/edit/{{svn.id}}"><span class="badge badge-warning">Edit</span></a></td>
-          <td><a style="text-decoration:None; color:black;" href="/savings/delete/{{svn.id}}"><span class="badge  badge-danger">Delete</span></a></td>
-                  </tr>
-                    {% endfor%}
+            <td><a style="text-decoration:None; color:black;" href="/savings/edit/{{svg.id}}"><span class="badge badge-warning">Edit</span> </a></td>
+            <td><a style="text-decoration:None; color:black;" href="/savings/delete/{{svg.id}}"><span class="badge  badge-danger">Delete</span></a></td>
+          </tr>
+          {% endfor%}
+
+          <tr>
+            <td colspan="1">TOTAL SAVINGS BALANCE</td>
+            <td id="totsvg" style="font-weight: bold"></td>
+          </tr>
         </tbody>
         <tfoot>
           <tr>

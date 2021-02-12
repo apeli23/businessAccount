@@ -14,7 +14,7 @@
                   <thead>
                     <tr>
                       
-                      <th scope="col">PRODUCT/SERVICE_ID</th>
+                      
                       <th scope="col">Product/Service</th>
                       <th scope="col">Description</th>
                       <th scope="col">Update </th>
@@ -26,7 +26,7 @@
                   	{%for data in post%}
                   <tr>
                   	
-                  	<td>{{data.id}}</td>
+                   
                   	<td>{{data.name}}</td>
                   	<td>{{data.description}}</td>
                     <td><a style="text-decoration:None; color:black;" href="/productservice/edit/{{data.id}}"><span class="badge badge-warning">Edit</span></a></td>
@@ -37,7 +37,7 @@
                   <tfoot>
                     <tr>
                       <th scope="col">Product/Service</th>
-                      <th scope="col">ID</th>
+                      
                       <th scope="col">Description</th>
                       <th scope="col">Update </th>
                       <th scope="col">Delete</th>

@@ -173,7 +173,7 @@ class tnsupdateView(TemplateView):
 			 "transaction_type": [		      
 				('Income', 'income'),
 				('Expense','expense'),
-				('Liability', 'liability'),
+				('Savings', 'savings'),
             ]
 		}
 		return render(request, self.template_name,  context=data)
@@ -182,12 +182,22 @@ class tnsupdateView(TemplateView):
 		form = TransactionsForm(request.POST)
 		tns = Transactions.objects.get(id=pk)
 		tns.transaction_type = form.data['transaction_type']
-		# tns.productsandservices = ProductsandServices.objects.get(id=form.data['productsandservices'])
+		# print(form.data)
+		tns.productsandservices = ProductsandServices.objects.get(id=form.data['productsandservices'])
 		tns.quantity = form.data['quantity']
 		tns.unit_price = form.data['unit_price']		
 		tns.customer_name = form.data['customer_name']
+		
 		tns.save()
 		return redirect('/transactionslist/')
+
+	# def post(self, request, pk):
+	# 	tns = Transactions.objects.get(id=pk)
+	# 	form = TransactionsForm(request.POST)
+	# 	psv.name = form.data['name']
+	# 	psv.description = form.data['description']
+	# 	psv.save()
+	# 	return redirect('/transactionslist/')
 
 class testView(TemplateView):
     template_name = 'ps4/test.html'
@@ -793,3 +803,34 @@ class savingslistView(TemplateView):
         # context = {'date_created':date_created,'date_updated':date_updated,'transaction_type':transaction_type,'quantity':quantity,'productsandservices':productsandservices,'client':client}
 
         return render(request, self.template_name , context=context)
+
+class savingseditView(TemplateView):
+	template_name = 'update/savingsupdate.html'
+
+	def get(self, request, pk):
+		return render(request, self.template_name, {"data": Savings.objects.get(id=pk)})
+
+	def post(self, request, pk):
+		svg = Savings.objects.get(id=pk)
+		form = SavingsForm(request.POST)
+		svg.amount = form.data['amount']
+		svg.expense = form.data['expense']
+		svg.save()
+		return redirect('/savingslist/')
+
+
+class incomelistView(TemplateView):
+    template_name = 'records/incomelist.html'
+    def get(self, request):
+        form = TransactionsForm()
+        tns = Transactions.objects.filter(transaction_type='Income')
+        args = {form:'form','tns':tns}
+        return render( request, self.template_name, args)
+
+class expenselistView(TemplateView):
+    template_name = 'records/expenselist.html'
+    def get(self, request):
+        form = TransactionsForm()
+        tns = Transactions.objects.filter(transaction_type='Expense')
+        args = {form:'form','tns':tns}
+        return render( request, self.template_name, args)

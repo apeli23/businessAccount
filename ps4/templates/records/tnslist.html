@@ -21,7 +21,7 @@
             <th scope="col" >DATE</th>
             <th scope="col">TRANSACTION TYPE</th>
             <th scope="col">PRODUCT/SERVICE</th>
-            <th scope="col">QUANTITY</th>
+            <!-- <th scope="col">QUANTITY</th> -->
             <th scope="col"> AMOUNT</th>
             <th scope="col">EDIT</th>
             <th scope="col">DELETE</th>
@@ -31,17 +31,23 @@
           {%for tns in data%}
           <tr>
                     
-          <td> {{tns.date_created}}</td> 
-          <td>{{tns.transaction_type}}</td>
-          <td>{{tns.productsandservices}}</td>
-          <td>{{tns.quantity}}</td>
-          <td>{{tns.unit_price}}</td>
-          <td><a style="text-decoration:None; color:black;" href="/transactions/edit/{{tns.id}}"><span class="badge badge-warning">Edit</span></a></td>
-          <td><a style="text-decoration:None; color:black;" href="/transactions/delete/{{tns.id}}"><span class="badge  badge-danger">Delete</span></a></td>
-                  </tr>
+            <td> {{tns.date_created}}</td> 
+            <td>{{tns.transaction_type}}</td>
+            <td>{{tns.productsandservices}}</td>
+            <!-- <td>{{tns.quantity}}</td> -->
+            <td>{{tns.unit_price}}</td>
+            <td><a style="text-decoration:None; color:black;" href="/transactions/edit/{{tns.id}}"><span class="badge badge-warning">Edit</span></a></td>
+            <td><a style="text-decoration:None; color:black;" href="/transactions/delete/{{tns.id}}"><span class="badge  badge-danger">Delete</span></a></td>
+
+          </tr>
+
                     {% endfor%}
+          <tr>
+            <td colspan="3">TOTAL BALANCE</td>
+            <td id="totalamt" style="font-weight: bold"></td>
+          </tr>
         </tbody>
-        <tfoot>
+       <!--  <tfoot>
           <tr>
             <th scope="col" >DATE</th>
             <th scope="col">TRANSACTION TYPE</th>
@@ -52,7 +58,7 @@
             <th scope="col">DELETE</th>
 
           </tr>
-        </tfoot>
+        </tfoot> -->
                   
       </table>
     </div> 
@@ -63,5 +69,20 @@
   </div>
 </div>
 
+<!-- total_transaction_amount script-->
+ <!--  <script>
+    $(document).ready(function()
+    {
+      var amt;
+      var totaltransaction=0;
+      $('td:nth-child(5)').each(function()
+      {
+          amt=$(this).html();
+          totaltransaction+=parseInt(amt);
+          $('#totns').text(totaltransaction);
+      });
 
+    });
+ </script>
+ -->
 {%endblock %} 

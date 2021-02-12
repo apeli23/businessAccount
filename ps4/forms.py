@@ -11,13 +11,13 @@ class TransactionsForm(forms.ModelForm):
 	TRANSACTION_TYPES = (
 		('Income', 'income'),
 		('Expense','expense'),
-		('Liability', 'liability'),
+		('Savings', 'savings'),
 	)
 
 	transaction_type = forms.ChoiceField(
 		choices=TRANSACTION_TYPES,
 		required=True,
-		label='Types',
+		label='TRANSACTION TYPE',
 		widget=forms.Select(
 			attrs={
 				'class': 'form-control', 
@@ -27,6 +27,7 @@ class TransactionsForm(forms.ModelForm):
 	
 	productsandservices = forms.ModelChoiceField(
 		queryset=ProductsandServices.objects.all(),
+		label='PRODUCT/SERVICE',
 		widget=forms.Select(
 			attrs={
 				'class': 'form-control',
@@ -36,8 +37,7 @@ class TransactionsForm(forms.ModelForm):
 	)
 	
 	quantity = forms.DecimalField( 
-		label='',
-        required=False, 
+		required=False, 
         widget=forms.TextInput(
 			attrs={
 			'class':'form-control',
@@ -46,7 +46,7 @@ class TransactionsForm(forms.ModelForm):
 	)
 
 	unit_price = forms.IntegerField( 
-		label='',
+		label='AMOUNT',
         required=True,
         widget=forms.TextInput(
 				attrs={
@@ -55,6 +55,7 @@ class TransactionsForm(forms.ModelForm):
 			 
 		}))
 	customer_name = forms.CharField( widget=forms.TextInput(
+		 
 		attrs={
 			'class':'form-control',
 			 

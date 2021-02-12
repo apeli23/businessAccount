@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'ps4',
     'django_filters',
 ]
+currency ='Ksh'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
